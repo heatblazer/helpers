@@ -3,6 +3,22 @@
 
 namespace izutils {
 
+
+template <typename A, typename B> struct is_same
+{
+    static const bool isSame = false;
+};
+
+template <typename T> struct is_same<T, T>
+{
+    static const bool isSame = true;
+};
+
+template <class A, class B> bool isSameClass()
+{
+    return is_same<A, B>::isSame;
+}
+
 /// as functor
 /// \brief The EndianSwap class
 ///
