@@ -48,11 +48,23 @@ char* aux_slice(const char* str, char delimiter, const char** pRet)
     while (*begin == delimiter) {
         begin++;
     }
-    (*pRet) = (char*)begin;
+    // assign the new value of the
+    // begin - now begin is the next
+    // non-delimiter data
+    (*pRet) = begin;
 
     return ret;
 }
 
+/// splits a huge string
+/// by a delimiter
+/// ver1
+/// \brief split
+/// \param str
+/// \param delimiter
+/// \param ret_size
+/// \return
+///
 char **split(const char *str, char delimiter, int *ret_size)
 {
     const char* begin = str;
@@ -62,7 +74,7 @@ char **split(const char *str, char delimiter, int *ret_size)
     int splits = 0;
     int diff = (end - begin)+1;
 
-    int i =0, j=0;
+    int i =0;
     while (i < diff) {
         if (begin[i] == delimiter) {
             while (begin[i] == delimiter) i++;
@@ -70,8 +82,9 @@ char **split(const char *str, char delimiter, int *ret_size)
         }
         i++;
     }
-    splits += 1;
-    *ret_size = splits;
+    splits += 1; // +1 for the split
+
+    *ret_size = splits; // number of strings after the split
     char** split_str = new char*[splits];
     for(int i=0; i < splits; ++i) {
         split_str[i] = aux_slice(begin, delimiter, &begin);
