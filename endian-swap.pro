@@ -3,7 +3,9 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    algorithm.cpp
 
 HEADERS += \
-    utils.h
+    utils.h \
+    algorithm.h
